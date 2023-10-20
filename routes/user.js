@@ -150,9 +150,9 @@ router.get("/user/dashboard", isAuthentificated, async (req, res) => {
 });
 
 router.post("/user/login", async (req, res) => {
-  // console.log("route: /user/login");
+  console.log("route: /user/login");
 
-  //   console.log(req.body);
+  console.log("req.body====>", req.body);
 
   try {
     const { email } = req.body;
