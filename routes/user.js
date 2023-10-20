@@ -158,6 +158,8 @@ router.post("/user/login", async (req, res) => {
     const { email } = req.body;
     const user = await User.findOne({ email: email });
 
+    console.log("user===>", user);
+
     if (user) {
       const newHash = SHA256(req.body.password + user.salt).toString(encBase64);
       // console.log(newHash);

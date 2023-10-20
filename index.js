@@ -20,6 +20,16 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://vinted-my.netlify.app");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
 // mongoose.connect(process.env.MONGODB_URI);
 const connectToDatabase = () => {
   try {
