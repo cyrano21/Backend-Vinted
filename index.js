@@ -12,6 +12,14 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
 
+const corsOptions = {
+  origin: "https://vinted-my.netlify.app",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 // mongoose.connect(process.env.MONGODB_URI);
 const connectToDatabase = () => {
   try {
@@ -40,6 +48,9 @@ cloudinary.config({
 //   api_key: process.env.CLOUDINARY_API_KEY,
 //   api_secret: process.env.CLOUDINARY_API_SECRET,
 // });
+
+const bacUrl = process.env.REACT_APP_BACKEND_URL;
+console.log(bacUrl);
 
 const userRoutes = require("./routes/user");
 const offerRoutes = require("./routes/offer");

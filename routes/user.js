@@ -72,8 +72,6 @@ const uploadAvatarToCloudinary = async (file, user) => {
   return { secure_url: result.secure_url };
 };
 
-// console.log(cloudinary.config());
-
 const parser = multer({ storage: storage });
 
 router.post("/user/signup", parser.single("avatar"), async (req, res) => {
@@ -103,12 +101,6 @@ router.post("/user/signup", parser.single("avatar"), async (req, res) => {
           hash: hash,
         });
 
-        // if (req.file) {
-        //   newUser.account.avatar = await uploadAvatarToCloudinary(
-        //     req.file,
-        //     newUser
-        //   );
-        // }
         const avatarInfo = await uploadAvatarToCloudinary(req.file, newUser);
         console.log("avatarInfo=====>", avatarInfo);
         newUser.account.avatar = avatarInfo;
@@ -117,12 +109,6 @@ router.post("/user/signup", parser.single("avatar"), async (req, res) => {
 
         await newUser.save();
         console.log("User to be saved:=======>", newUser);
-
-        // console.log({
-        //   _id: newUser._id,
-        //   token: newUser.token,
-        //   account: newUser.account,
-        // });
 
         res.status(200).json({
           _id: newUser._id,
