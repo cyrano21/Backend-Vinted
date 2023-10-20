@@ -10,6 +10,8 @@ const app = express();
 app.use(express.json());
 app.use(morgan("dev"));
 
+// app.use(cors());
+
 const corsOptions = {
   origin: "https://vinted-my.netlify.app",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -47,8 +49,8 @@ cloudinary.config({
 //   api_secret: process.env.CLOUDINARY_API_SECRET,
 // });
 
-const bacUrl = process.env.REACT_APP_BACKEND_URL;
-console.log(bacUrl);
+// const bacUrl = process.env.REACT_APP_BACKEND_URL;
+// console.log(bacUrl);
 
 const userRoutes = require("./routes/user");
 const offerRoutes = require("./routes/offer");
